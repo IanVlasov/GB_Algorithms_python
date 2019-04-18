@@ -112,31 +112,31 @@
 # (за год для всех предприятий) и вывести наименования предприятий,
 # чья прибыль выше среднего и отдельно вывести наименования предприятий, чья прибыль ниже среднего.
 
-import collections
-import statistics
-
-FactoryRecord = collections.namedtuple('FactoryRecord', 'name, average_income')
-Database = []
-
-FactoryCounter = int(input("Количество компаний: "))
-
-for i in range(FactoryCounter):
-    UserInput = str(input('Введи имя и прибыль через запятую: ')).split(sep=', ')
-
-    for item in UserInput:
-        UserInput[UserInput.index(item)] = float(item) if item.isdigit() else item
-
-    average_income = statistics.mean(UserInput[1:])
-
-    NewRecord = FactoryRecord(UserInput[0], average_income)
-    Database.append(NewRecord)
-
-
-average_income_total = statistics.mean([item.average_income for item in Database])
-less_than_mean = [item.name for item in Database if item.average_income <= average_income_total]
-more_than_mean = [item.name for item in Database if item.average_income > average_income_total]
-
-print(f'Прибыль больше среднего у компаний {more_than_mean}, меньше у {less_than_mean}')
+# import collections
+# import statistics
+#
+# FactoryRecord = collections.namedtuple('FactoryRecord', 'name, average_income')
+# Database = []
+#
+# FactoryCounter = int(input("Количество компаний: "))
+#
+# for i in range(FactoryCounter):
+#     UserInput = str(input('Введи имя и прибыль через запятую: ')).split(sep=', ')
+#
+#     for item in UserInput:
+#         UserInput[UserInput.index(item)] = float(item) if item.isdigit() else item
+#
+#     average_income = statistics.mean(UserInput[1:])
+#
+#     NewRecord = FactoryRecord(UserInput[0], average_income)
+#     Database.append(NewRecord)
+#
+#
+# average_income_total = statistics.mean([item.average_income for item in Database])
+# less_than_mean = [item.name for item in Database if item.average_income <= average_income_total]
+# more_than_mean = [item.name for item in Database if item.average_income > average_income_total]
+#
+# print(f'Прибыль больше среднего у компаний {more_than_mean}, меньше у {less_than_mean}')
 
 
 # 2. Написать программу сложения и умножения двух шестнадцатеричных чисел.
@@ -144,7 +144,9 @@ print(f'Прибыль больше среднего у компаний {more_t
 # Например, пользователь ввёл A2 и C4F. Сохранить их как [‘A’, ‘2’] и [‘C’, ‘4’, ‘F’] соответственно.
 # Сумма чисел из примера: [‘C’, ‘F’, ‘1’], произведение - [‘7’, ‘C’, ‘9’, ‘F’, ‘E’].
 
-
+# import collections
+#
+# hex_dict = collections.ordereddict()
 
 
 
@@ -156,14 +158,86 @@ print(f'Прибыль больше среднего у компаний {more_t
 # Сортировка должна быть реализована в виде функции. По возможности доработайте алгоритм (сделайте его умнее).
 
 
+# import random
+#
+#
+# def bubble_sort(list_to_sort):
+#     for i in range(0, len(list_to_sort) - 1):
+#         is_sorted = True
+#         for j in range(0, len(list_to_sort) - i - 1):
+#             if list_to_sort[j] > list_to_sort[j+1]:
+#                 list_to_sort[j], list_to_sort[j+1] = list_to_sort[j+1], list_to_sort[j]
+#                 is_sorted = False
+#         if is_sorted:
+#             break
+#     return list_to_sort
+#
+#
+# list_to_sort = [random.randint(-100, 100) for _ in range(30)]
+# print(list_to_sort)
+# print(bubble_sort(list_to_sort))
+
 
 # 2. Отсортируйте по возрастанию методом слияния одномерный вещественный массив,
 # заданный случайными числами на промежутке [0; 50). Выведите на экран исходный и отсортированный массивы.
-
-
+#
+#
+# import random
+#
+#
+# def merge_sort(list_to_sort):
+#     if len(list_to_sort) > 1:
+#         list1 = merge_sort(list_to_sort[: len(list_to_sort) // 2])
+#         list2 = merge_sort(list_to_sort[len(list_to_sort) // 2:])
+#         result = merge(list1, list2)
+#         return result
+#     else:
+#         return list_to_sort
+#
+#
+# def merge(sorted_list1, sorted_list2):
+#     merged_list = []
+#     while len(sorted_list1) > 0 and len(sorted_list2) > 0:
+#         if sorted_list1[0] <= sorted_list2[0]:
+#             to_add = sorted_list1.pop(0)
+#             merged_list.append(to_add)
+#         else:
+#             to_add = sorted_list2.pop(0)
+#             merged_list.append(to_add)
+#     if len(sorted_list1) != 0:
+#         merged_list.extend(sorted_list1)
+#     else:
+#         merged_list.extend(sorted_list2)
+#
+#     return merged_list
+#
+#
+# list_to_sort = [float('{:.2f}'.format(random.random() * 50)) for _ in range(30)]
+#
+# print(list_to_sort)
+# print(merge_sort(list_to_sort))
 
 # 3. Массив размером 2m + 1, где m – натуральное число, заполнен случайным образом.
 # Найдите в массиве медиану. Медианой называется элемент ряда, делящий его на две равные части:
 # в одной находятся элементы, которые не меньше медианы, в другой – не больше медианы.
 # Задачу можно решить без сортировки исходного массива. Но если это слишком сложно,
 # то используйте метод сортировки, который не рассматривался на уроках
+
+import random
+
+
+def median_search(list_to_search, target):
+    pivot = random.randint(len(list_to_search))
+    list1 = [item for item in list_to_search if item <= list_to_search[pivot]]
+    list2 = [item for item in list_to_search if item > list_to_search[pivot]]
+
+    if len(list1) > len(list2):
+
+
+
+m = 10
+
+list_to_search = [random.randint(-50, 50) for _ in range(m)]
+
+
+
