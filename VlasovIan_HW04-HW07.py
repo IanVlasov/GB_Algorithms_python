@@ -144,9 +144,78 @@
 # Например, пользователь ввёл A2 и C4F. Сохранить их как [‘A’, ‘2’] и [‘C’, ‘4’, ‘F’] соответственно.
 # Сумма чисел из примера: [‘C’, ‘F’, ‘1’], произведение - [‘7’, ‘C’, ‘9’, ‘F’, ‘E’].
 
+
 # import collections
 #
-# hex_dict = collections.ordereddict()
+#
+# def hex_to_dec(hex_number):
+#
+#     hex_table = {
+#         '0': 0,
+#         '1': 1,
+#         '2': 2,
+#         '3': 3,
+#         '4': 4,
+#         '5': 5,
+#         '6': 6,
+#         '7': 7,
+#         '8': 8,
+#         '9': 9,
+#         'A': 10,
+#         'B': 11,
+#         'C': 12,
+#         'D': 13,
+#         'E': 14,
+#         'F': 15
+#     }
+#
+#     decimal_number = 0
+#     for item in hex_number:
+#         decimal_number += hex_table.get(item) * 16 ** (len(hex_number) - hex_number.index(item) - 1)
+#     return decimal_number
+#
+#
+# def dec_to_hex(dec_number):
+#
+#     hex_table = {
+#         0: '0',
+#         1: '1',
+#         2: '2',
+#         3: '3',
+#         4: '4',
+#         5: '5',
+#         6: '6',
+#         7: '7',
+#         8: '8',
+#         9: '9',
+#         10: 'A',
+#         11: 'B',
+#         12: 'C',
+#         13: 'D',
+#         14: 'E',
+#         15: 'F'
+#     }
+#
+#     hex_number = collections.deque()
+#     while dec_number >= 16:
+#         hex_number.appendleft(hex_table.get(dec_number % 16))
+#         dec_number = dec_number // 16
+#     hex_number.appendleft(hex_table.get(dec_number % 16))
+#
+#     return list(hex_number)
+#
+#
+# a = list(input("Введи первое 16-ричное число: "))
+# b = list(input("Введи второе 16-ричное число: "))
+#
+# sum_ = dec_to_hex(hex_to_dec(a) + hex_to_dec(b))
+# mult_ = dec_to_hex(hex_to_dec(a) * hex_to_dec(b))
+#
+# print(f'{a} + {b} = {sum_}')
+# print(f'{a} * {b} = {mult_}')
+
+
+
 
 
 
@@ -223,21 +292,37 @@
 # Задачу можно решить без сортировки исходного массива. Но если это слишком сложно,
 # то используйте метод сортировки, который не рассматривался на уроках
 
-import random
+# import random
+#
+#
+# def median_search(list_to_search, target):
+#     while True:
+#         if len(list_to_search) <= 2:
+#             if target == 0:
+#                 return list_to_search[0]
+#             else:
+#                 return list_to_search[1]
+#
+#         pivot = random.randint(0, len(list_to_search) - 1)
+#
+#         list1 = [item for item in list_to_search if item <= list_to_search[pivot]]
+#         list2 = [item for item in list_to_search if item > list_to_search[pivot]]
+#
+#         if len(list1) - 1 == target:
+#             return list_to_search[pivot]
+#         elif len(list1) - 1 < target:
+#             target -= len(list1)
+#             list_to_search = list2
+#         else:
+#             list_to_search = list1
+#
+# m = 10
+#
+# list_to_search = [random.randint(-50, 50) for _ in range(2 * m + 1)]
+#
+# print(sorted(list_to_search))
+# print(median_search(list_to_search, m))
 
-
-def median_search(list_to_search, target):
-    pivot = random.randint(len(list_to_search))
-    list1 = [item for item in list_to_search if item <= list_to_search[pivot]]
-    list2 = [item for item in list_to_search if item > list_to_search[pivot]]
-
-    if len(list1) > len(list2):
-
-
-
-m = 10
-
-list_to_search = [random.randint(-50, 50) for _ in range(m)]
 
 
 
